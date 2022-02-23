@@ -1,1 +1,28 @@
-<h1>All our Flats (<%= @flats.count %>) </h1>
+<div class="container my-4">
+  <h1>All our Flats (<%= @flats.count %>) </h1>
+  <div class="row">
+    <% @flats.each do |flat| %>
+      <div class="col-md-4">
+        <div class="card-group">
+          <div class="card">
+            <img class="card-img-top" src="./app/assets/images/room.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"><%= flat.name %></h5>
+              <p class="card-text"><%= flat.address %></p>
+              <p class="card-text"><i class="fas fa-user-friends"> <%= flat.number_of_guests %> </i></p>
+              <p class="card-text"><i class="fas fa-euro-sign"> <%= flat.price_per_night %> </i></p>
+            </div>
+            <div class="card-footer d-flex">
+              <p><%= link_to "More info", flat_path(flat) %></p>
+              <p><%= link_to "Edit", edit_flat_path(flat) %></p>
+              <p><%= link_to "Remove",
+                              flat_path(flat), method: :delete,
+                              data: { confirm: "Are you sure?" },
+                              class: 'ms-3 text-danger' %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
